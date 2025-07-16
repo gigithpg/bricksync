@@ -1,5 +1,5 @@
 body {
-  background-color: #f8f9fa;
+  background: #f8f9fa;
 }
 .navbar-brand {
   font-weight: bold;
@@ -11,4 +11,23 @@ body {
   .form-control, .btn {
     font-size: 0.9rem;
   }
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background: #22252d;
+  color: #ffffff;
+}
+body.dark-mode .card,
+body.dark-mode .navbar,
+body.dark-mode .fixed-sidebar {
+  background: #2a2d37;
+  color: #ffffff;
+}
+body.dark-mode .table {
+  background: #2a2d37;
+  color: #ffffff;
+}
+body.dark-mode .table-striped tbody tr:nth-of-type(odd) {
+  background: #343a40;
 }
