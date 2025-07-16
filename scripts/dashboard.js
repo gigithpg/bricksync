@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         method: 'GET',
         mode: 'cors'
       });
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const customers = await response.json();
       totalCustomers.textContent = customers.length;
     } catch (error) {

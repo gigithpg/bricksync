@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
           body: JSON.stringify({ customerId, customerName }),
           mode: 'cors'
         });
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const result = await response.json();
         if (result.status === 'success') {
           alert('Customer added successfully');
@@ -40,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
           method: 'GET',
           mode: 'cors'
         });
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const customers = await response.json();
         customerList.innerHTML = '';
         customers.forEach(customer => {
@@ -66,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({ customerId }),
         mode: 'cors'
       });
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const result = await response.json();
       if (result.status === 'success') {
         alert('Customer deleted successfully');
