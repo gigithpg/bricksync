@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BrickSync Dashboard</title>
+  <title>Customers - BrickSync</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -16,8 +16,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="customers.html">Customers</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link active" href="customers.html">Customers</a></li>
           <li class="nav-item"><a class="nav-link" href="sales.html">Sales</a></li>
           <li class="nav-item"><a class="nav-link" href="payments.html">Payments</a></li>
           <li class="nav-item"><a class="nav-link" href="transactions.html">Transactions</a></li>
@@ -27,39 +27,33 @@
     </div>
   </nav>
   <div class="container mt-4">
-    <h1>BrickSync Dashboard</h1>
-    <p>Welcome to BrickSync. This dashboard will display sales, payments, customers, and balances analytics.</p>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Total Customers</h5>
-            <p class="card-text" id="totalCustomers">Loading...</p>
-          </div>
+    <h1>Customers</h1>
+    <form id="customerForm" class="mb-4">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <input type="text" id="customerId" class="form-control" placeholder="Customer ID" required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <input type="text" id="customerName" class="form-control" placeholder="Customer Name" required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <button type="submit" class="btn btn-primary">Add Customer</button>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Total Sales</h5>
-            <p class="card-text">Coming soon...</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Pending Balances</h5>
-            <p class="card-text">Coming soon...</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Placeholder for Chart.js in later steps -->
-    <canvas id="dashboardChart" class="mt-4"></canvas>
+    </form>
+    <h3>Customer List</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Customer ID</th>
+          <th>Customer Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="customerList"></tbody>
+    </table>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="scripts/main.js"></script>
-  <script src="scripts/dashboard.js"></script>
 </body>
 </html>
