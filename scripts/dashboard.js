@@ -4,7 +4,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (totalCustomers) {
     try {
-      const response = await fetch(`${window.API_URL}?action=getCustomers`);
+      const response = await fetch(`${window.API_URL}?action=getCustomers`, {
+        method: 'GET',
+        mode: 'cors'
+      });
       const customers = await response.json();
       totalCustomers.textContent = customers.length;
     } catch (error) {

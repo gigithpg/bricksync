@@ -1,5 +1,5 @@
 // scripts/main.js
-window.API_URL = "https://script.google.com/macros/s/AKfycbxdSfR8XoEwxM-pvGWsxF33zVpTQ9QPZgDEpfjiRYNT0vGzHOm-buXXhPsOZVVYVPzOew/exec"; // Replace with your Google Apps Script Web app URL
+window.API_URL = "https://script.google.com/macros/s/AKfycbxdSfR8XoEwxM-pvGWsxF33zVpTQ9QPZgDEpfjiRYNT0vGzHOm-buXXhPsOZVVYVPzOew/exec"; // Replace with new Web app URL
 
 document.addEventListener('DOMContentLoaded', () => {
   const customerForm = document.getElementById('customerForm');
@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const response = await fetch(`${window.API_URL}?action=addCustomer`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ customerId, customerName })
+          body: JSON.stringify({ customerId, customerName }),
+          mode: 'cors'
         });
         const result = await response.json();
         if (result.status === 'success') {
@@ -26,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
           alert('Error adding customer: ' + result.message);
         }
       } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to add customer');
+        console.error('Error adding customer:', error);
+        alert('Failed to add customer. Check console for details.');
       }
     });
   }
@@ -35,7 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
   async function loadCustomers() {
     if (customerList) {
       try {
-        const response = await fetch(`${window.API_URL}?action=getCustomers`);
+        const response = await fetch(`${window.API_URL}?action=getCustomers`, {
+          method: 'GET',
+          mode: 'cors'
+        });
         const customers = await response.json();
         customerList.innerHTML = '';
         customers.forEach(customer => {
@@ -49,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       } catch (error) {
         console.error('Error loading customers:', error);
+        customerList.innerHTML = '<tr><td colspan="3">Failed to load customers</td></tr>';
       }
     }
   }
@@ -58,7 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const response = await fetch(`${window.API_URL}?action=deleteCustomer`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ customerId })
+        body: JSON.stringify({ customerId }),
+        mode: 'cors'
       });
       const result = await response.json();
       if (result.status === 'success') {
@@ -68,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Error deleting customer: ' + result.message);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error deleting customer:', error);
       alert('Failed to delete customer');
     }
   };
