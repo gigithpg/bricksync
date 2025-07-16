@@ -1,5 +1,5 @@
 // scripts/main.js
-window.API_URL = "https://script.google.com/macros/s/AKfycbxdSfR8XoEwxM-pvGWsxF33zVpTQ9QPZgDEpfjiRYNT0vGzHOm-buXXhPsOZVVYVPzOew/exec"; // Replace with new Web app URL
+window.API_URL = "https://cors-proxy.gigithpg.workers.dev"; // Replace with new Web app URL
 
 document.addEventListener('DOMContentLoaded', () => {
   const customerForm = document.getElementById('customerForm');
