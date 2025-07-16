@@ -12,95 +12,120 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="fixed-sidebar">
-    <div class="sidebar-content">
-      <div class="sidebar-brand">
-        <a href="index.html">BrickSync</a>
-        <div class="menu-toggle">
-          <i class="fas fa-bars"></i>
-        </div>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <a href="index.html">BrickSync</a>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
       </div>
-      <ul class="sidebar-menu">
-        <li class="active"><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-        <li><a href="customers.html"><i class="fas fa-users"></i> Customers</a></li>
-        <li><a href="sales.html"><i class="fas fa-shopping-cart"></i> Sales</a></li>
-        <li><a href="payments.html"><i class="fas fa-money-bill"></i> Payments</a></li>
-        <li><a href="transactions.html"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
-        <li><a href="balances.html"><i class="fas fa-balance-scale"></i> Balances</a></li>
-      </ul>
     </div>
+    <ul class="sidebar-menu">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="customers.html"><i class="fas fa-users"></i> Customers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="sales.html"><i class="fas fa-shopping-cart"></i> Sales</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="payments.html"><i class="fas fa-money-bill"></i> Payments</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="transactions.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="balances.html"><i class="fas fa-balance-scale"></i> Balances</a>
+      </li>
+    </ul>
   </div>
   <div class="main-content">
-    <header>
-      <nav class="navbar navbar-top navbar-expand navbar-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">BrickSync</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#" onclick="toggleTheme()">Toggle Theme</a>
-              </li>
-            </ul>
-          </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">BrickSync</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="d-flex ms-3">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+          </form>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i> Toggle Theme
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                <i class="fas fa-user"></i> Admin
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
     <div class="container-fluid">
       <h1 class="mt-4">Dashboard</h1>
       <div class="row">
-        <div class="col-xl-3 col-md-6">
-          <div class="card bg-primary text-white mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card bg-primary text-white shadow">
             <div class="card-body">
               <div class="d-flex align-items-center">
                 <i class="fas fa-users fa-2x me-3"></i>
                 <div>
-                  <h5>Total Customers</h5>
-                  <p id="totalCustomers">Loading...</p>
+                  <h5 class="text-uppercase mb-1">Total Customers</h5>
+                  <h4 class="mb-0" id="totalCustomers">Loading...</h4>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-md-6">
-          <div class="card bg-success text-white mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card bg-success text-white shadow">
             <div class="card-body">
               <div class="d-flex align-items-center">
                 <i class="fas fa-shopping-cart fa-2x me-3"></i>
                 <div>
-                  <h5>Total Sales</h5>
-                  <p>Coming soon...</p>
+                  <h5 class="text-uppercase mb-1">Total Sales</h5>
+                  <h4 class="mb-0">Coming soon...</h4>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-md-6">
-          <div class="card bg-warning text-white mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card bg-warning text-white shadow">
             <div class="card-body">
               <div class="d-flex align-items-center">
                 <i class="fas fa-balance-scale fa-2x me-3"></i>
                 <div>
-                  <h5>Pending Balances</h5>
-                  <p>Coming soon...</p>
+                  <h5 class="text-uppercase mb-1">Pending Balances</h5>
+                  <h4 class="mb-0">Coming soon...</h4>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="card mb-4">
-        <div class="card-header">
-          <i class="fas fa-chart-area me-1"></i> Sales Overview
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-chart-area me-1"></i> Sales Overview</h6>
         </div>
         <div class="card-body">
           <canvas id="dashboardChart"></canvas>
         </div>
       </div>
     </div>
-    <footer class="text-center py-3">Powered by <a href="https://colorlib.com">Colorlib</a></footer>
+    <footer class="text-center py-4">Powered by <a href="https://colorlib.com">Colorlib</a></footer>
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
