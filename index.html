@@ -5,13 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BrickSync Dashboard</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <!-- Themify Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/themify-icons@0.1.2/css/themify-icons.css">
-  <!-- Adminator CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -36,7 +32,7 @@
   </div>
   <div class="main-content">
     <header>
-      <nav class="navbar navbar-top navbar-expand-md">
+      <nav class="navbar navbar-top navbar-expand navbar-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.html">BrickSync</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
@@ -58,31 +54,46 @@
         <div class="col-xl-3 col-md-6">
           <div class="card bg-primary text-white mb-4">
             <div class="card-body">
-              <h5>Total Customers</h5>
-              <p id="totalCustomers">Loading...</p>
+              <div class="d-flex align-items-center">
+                <i class="fas fa-users fa-2x me-3"></i>
+                <div>
+                  <h5>Total Customers</h5>
+                  <p id="totalCustomers">Loading...</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="col-xl-3 col-md-6">
           <div class="card bg-success text-white mb-4">
             <div class="card-body">
-              <h5>Total Sales</h5>
-              <p>Coming soon...</p>
+              <div class="d-flex align-items-center">
+                <i class="fas fa-shopping-cart fa-2x me-3"></i>
+                <div>
+                  <h5>Total Sales</h5>
+                  <p>Coming soon...</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="col-xl-3 col-md-6">
           <div class="card bg-warning text-white mb-4">
             <div class="card-body">
-              <h5>Pending Balances</h5>
-              <p>Coming soon...</p>
+              <div class="d-flex align-items-center">
+                <i class="fas fa-balance-scale fa-2x me-3"></i>
+                <div>
+                  <h5>Pending Balances</h5>
+                  <p>Coming soon...</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="card mb-4">
         <div class="card-header">
-          <i class="fas fa-area-chart"></i> Sales Overview
+          <i class="fas fa-chart-area me-1"></i> Sales Overview
         </div>
         <div class="card-body">
           <canvas id="dashboardChart"></canvas>
