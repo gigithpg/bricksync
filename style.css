@@ -1,15 +1,78 @@
+/* style.css */
 body {
   background: #f8f9fa;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
+
 .navbar-brand {
   font-weight: bold;
 }
+
 .table th, .table td {
   vertical-align: middle;
 }
+
 @media (max-width: 576px) {
   .form-control, .btn {
     font-size: 0.9rem;
+  }
+}
+
+/* Sidebar Fixes */
+.fixed-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background: #ffffff;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.fixed-sidebar.active {
+  transform: translateX(0);
+}
+
+.sidebar-content {
+  padding: 15px;
+}
+
+.sidebar-brand {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  padding: 10px 15px;
+}
+
+.sidebar-menu li.active a {
+  color: #007bff;
+}
+
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .fixed-sidebar {
+    transform: translateX(-250px);
+  }
+  .fixed-sidebar.active {
+    transform: translateX(0);
+  }
+  .main-content {
+    margin-left: 0;
   }
 }
 
@@ -18,16 +81,19 @@ body.dark-mode {
   background: #22252d;
   color: #ffffff;
 }
+
+body.dark-mode .fixed-sidebar,
 body.dark-mode .card,
-body.dark-mode .navbar,
-body.dark-mode .fixed-sidebar {
+body.dark-mode .navbar {
   background: #2a2d37;
   color: #ffffff;
 }
+
 body.dark-mode .table {
   background: #2a2d37;
   color: #ffffff;
 }
+
 body.dark-mode .table-striped tbody tr:nth-of-type(odd) {
   background: #343a40;
 }
