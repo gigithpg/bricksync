@@ -87,19 +87,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = await response.text();
         console.log('Delete customer response:', text);
         throw new Error(`HTTP error! status: ${response.status}, statusText: ${response.statusText}`);
+        }
+        const result = await response.json();
+        if (result.status === 'success') {
+          alert('Customer deleted successfully');
+          loadCustomers();
+        } else {
+          alert('Error deleting customer: ' + result.message);
+        }
+      } catch (error) {
+        console.error('Error deleting customer:', error);
+        alert('Failed to delete customer: ' + error.message);
       }
-      const result = await response.json();
-      if (result.status === 'success') {
-        alert('Customer deleted successfully');
-        loadCustomers();
-      } else {
-        alert('Error deleting customer: ' + result.message);
-      }
-    } catch (error) {
-      console.error('Error deleting customer:', error);
-      alert('Failed to delete customer: ' + error.message);
-    }
-  };
+    };
 
   if (customerList) loadCustomers();
 });
