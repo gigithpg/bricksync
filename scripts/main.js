@@ -1,5 +1,5 @@
 // scripts/main.js
-window.API_URL = "https://cors-proxy.gigithpg.workers.dev"; // Replace with new Web app URL
+window.API_URL = "https://cors-proxy.gigithpg.workers.dev"; // Direct Apps Script URL
 
 document.addEventListener('DOMContentLoaded', () => {
   const customerForm = document.getElementById('customerForm');
@@ -18,7 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
           body: JSON.stringify({ customerId, customerName }),
           mode: 'cors'
         });
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        if (!response.ok) {
+          const text = await response.text();
+          console.log('Add customer response:', text);
+          throw new Error(`HTTP error! status: ${response.status}, statusText: ${response.statusText}`);
+        }
         const result = await response.json();
         if (result.status === 'success') {
           alert('Customer added successfully');
@@ -29,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } catch (error) {
         console.error('Error adding customer:', error);
-        alert('Failed to add customer. Check console for details.');
+        alert('Failed to add customer: ' + error.message);
       }
     });
   }
@@ -41,8 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
           method: 'GET',
           mode: 'cors'
         });
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const customers = await response.json();
+        if (!response.ok) {
+          const text = await response.text();
+          console.log('Get customers response:', text);
+          throw new Error(`HTTP error! status: ${response.status}, statusText: ${response.statusText}`);
+        }
+        const text = await response.text();
+        console.log('Get customers response:', text);
+        const customers = JSON.parse(text);
         customerList.innerHTML = '';
         customers.forEach(customer => {
           const row = document.createElement('tr');
@@ -55,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       } catch (error) {
         console.error('Error loading customers:', error);
-        customerList.innerHTML = '<tr><td colspan="3">Failed to load customers</td></tr>';
+        customerList.innerHTML = '<tr><td colspan="3">Failed to load customers: ' + error.message + '</td></tr>';
       }
     }
   }
@@ -68,7 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({ customerId }),
         mode: 'cors'
       });
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      if (!response.ok) {
+        const text = await response.text();
+        console.log('Delete customer response:', text);
+        throw new Error(`HTTP error! status: ${response.status}, statusText: ${response.statusText}`);
+      }
       const result = await response.json();
       if (result.status === 'success') {
         alert('Customer deleted successfully');
@@ -78,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (error) {
       console.error('Error deleting customer:', error);
-      alert('Failed to delete customer');
+      alert('Failed to delete customer: ' + error.message);
     }
   };
 

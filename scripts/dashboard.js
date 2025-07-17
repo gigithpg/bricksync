@@ -8,12 +8,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         method: 'GET',
         mode: 'cors'
       });
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      const customers = await response.json();
+      if (!response.ok) {
+        const text = await response.text();
+        console.log('Get customers response:', text);
+        throw new Error(`HTTP error! status: ${response.status}, statusText: ${response.statusText}`);
+      }
+      const text = await response.text();
+      console.log('Get customers response:', text);
+      const customers = JSON.parse(text);
       totalCustomers.textContent = customers.length;
     } catch (error) {
       console.error('Error loading dashboard:', error);
-      totalCustomers.textContent = 'Error';
+      totalCustomers.textContent = 'Error: ' + error.message;
     }
   }
 });
