@@ -1,5 +1,5 @@
 // scripts/main.js
-window.API_URL = "https://cors-proxy.gigithpg.workers.dev"; // Direct Apps Script URL
+window.API_URL = "https://cors-proxy.gigithpg.workers.dev"; // Worker URL
 
 document.addEventListener('DOMContentLoaded', () => {
   const customerForm = document.getElementById('customerForm');
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const response = await fetch(`${window.API_URL}?action=addCustomer`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({ customerId, customerName }),
           mode: 'cors'
         });
@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const response = await fetch(`${window.API_URL}?action=getCustomers`, {
           method: 'GET',
+          headers: { 'Accept': 'application/json' },
           mode: 'cors'
         });
         if (!response.ok) {
@@ -52,7 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const text = await response.text();
         console.log('Get customers response:', text);
-        const customers = JSON.parse(text);
+        const result = JSON.parse(text);
+        if (result.status !== 'success') {
+          throw new Error(result.message || 'Failed to load customers');
+        }
+        const customers = result.data || [];
         customerList.innerHTML = '';
         customers.forEach(customer => {
           const row = document.createElement('tr');
@@ -74,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const response = await fetch(`${window.API_URL}?action=deleteCustomer`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({ customerId }),
         mode: 'cors'
       });

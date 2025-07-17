@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
       const response = await fetch(`${window.API_URL}?action=getCustomers`, {
         method: 'GET',
+        headers: { 'Accept': 'application/json' },
         mode: 'cors'
       });
       if (!response.ok) {
@@ -15,7 +16,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
       const text = await response.text();
       console.log('Get customers response:', text);
-      const customers = JSON.parse(text);
+      const result = JSON.parse(text);
+      if (result.status !== 'success') {
+        throw new Error(result.message || 'Failed to load customers');
+      }
+      const customers = result.data || [];
       totalCustomers.textContent = customers.length;
     } catch (error) {
       console.error('Error loading dashboard:', error);
