@@ -46,7 +46,7 @@ export default function App() {
 
   return (
     <AppProvider>
-      <Router>
+      <Router basename="/bricksync">
         <ErrorBoundary>
           <Navbar
             bg="dark"
